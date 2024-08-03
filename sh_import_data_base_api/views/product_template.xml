@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <record id="sh_update_sqmter_per_box_action" model="ir.actions.server">
+        <field name="name">Update sq yards</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="product.model_product_template" />
+        <field name="binding_model_id" ref="product.model_product_template" />
+        <field name="code">
+            records.sh_update_sqmter_per_box()
+        </field>
+    </record>
+</odoo>

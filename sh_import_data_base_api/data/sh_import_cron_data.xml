@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sh_import_base_product_cron" model="ir.cron">
+        <field name="name">Import Products From Other database</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="sh_import_data_base_api.model_sh_import_base" />
+        <field name="code">model.import_product_cron()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="sh_import_base_order_cron" model="ir.cron">
+        <field name="name">Import orders From Other database</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="sh_import_data_base_api.model_sh_import_base" />
+        <field name="code">model.import_orders_cron()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="sh_import_base_invoice_payment_cron" model="ir.cron">
+        <field name="name">Import Invoice-Payment From Other database</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="sh_import_data_base_api.model_sh_import_base" />
+        <field name="code">model.import_invoice_payment_cron()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="sh_import_base_order_filter_cron" model="ir.cron">
+        <field name="name">Import Filtered orders From Other database</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="sh_import_data_base_api.model_sh_import_base" />
+        <field name="code">model.import_order_from_queue()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="sh_import_base_contact_cron" model="ir.cron">
+        <field name="name">Import Contacts From Other database</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="sh_import_data_base_api.model_sh_import_base" />
+        <field name="code">model.import_contacts_cron()</field>
+        <field name="state">code</field>
+    </record>
+
+    <!-- Convert product to storable -->
+    <record model="ir.actions.server" id="sh_convert_order_to_storable">
+        <field name="name">Convert Product To Storable</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_product_template" />
+        <field name="binding_model_id" ref="model_product_template" />
+        <field name="state">code</field>
+        <field name="code">
+            action = records.convert_product_storable()
+        </field>
+    </record>
+</odoo>

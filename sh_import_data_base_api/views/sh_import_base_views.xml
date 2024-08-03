@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Tree view for "model" -->
+        <record id="sh_view_import_base_tree" model="ir.ui.view">
+            <field name="name">sh.view.import.base.tree</field>
+            <field name="model">sh.import.base</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <tree string="model_tree" create="true" delete="true" edit="true">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view for "model" -->
+        <record id="sh_view_import_base_form" model="ir.ui.view">
+            <field name="name">sh.view.import.base.form</field>
+            <field name="model">sh.import.base</field>
+            <field name="type">form</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <form string="model_form" create="true" delete="true" edit="true">
+                    <header>
+                        <button name="connect_database" string="Authenticate" type="object" class="oe_highlight" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="base_url" />
+                        </group>
+                        <notebook>
+                            <page name="contact_product" string="Contacts &amp; Products">
+                                <group>
+                                    <field name="import_product" />
+                                    <field name="import_contacts" />
+                                    <field name="records_per_page" />
+                                </group>
+                                <h2 class="text-primary mb-2">Log History</h2>
+                                <field name="log_historys" readonly="1">
+                                    <tree decoration-success="state=='success'" decoration-danger="state=='error'">
+                                        <field name="field_type" />
+                                        <field name="operation" />
+                                        <field name="error" />
+                                        <field name="datetime" />
+                                        <field name="state" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="orders" string="Orders">
+                                <button string="Import Orders" name="import_orders_cron" type="object" class="oe_highlight"/>
+                                <button string="Import Filtered Order" name="import_order_filtered_to_queue" type="object" class="oe_highlight m-2" attrs="{'invisible':[('sh_import_filter_order', '=', False)]}"/>
+                                <button string="Import From Queue Filtered" name="import_order_from_queue" type="object" class="oe_highlight m-2" invisible="1"/>
+                                <group>
+                                    <group>
+                                        <field name="import_order" />
+                                        <field name="records_per_page_so" />
+                                        <field name="current_import_page_so" />
+                                    </group>
+                                    <group>
+                                        <field name="sh_import_filter_order" />
+                                        <field name="sh_import_order_ids" />
+                                        <field name="sh_from_date"  attrs="{'invisible':[('sh_import_filter_order', '=', False)],'required':[('sh_import_filter_order', '=', True)]}"/>
+                                        <field name="sh_to_date" attrs="{'invisible':[('sh_import_filter_order', '=', False)],'required':[('sh_import_filter_order', '=', True)]}" />
+                                    </group>
+                                </group>
+                                <h2 class="text-primary mb-2">Log History</h2>
+                                <field name="log_historys" readonly="1">
+                                    <tree decoration-success="state=='success'" decoration-danger="state=='error'">
+                                        <field name="field_type" />
+                                        <field name="operation" />
+                                        <field name="error" />
+                                        <field name="datetime" />
+                                        <field name="state" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="invoice_payment" string="Invoice &amp; Payment">
+                                <button string="Import Invoice-Payment" name="import_invoice_payment_cron" type="object" class="oe_highlight"/>
+                                <group>
+                                    <group>
+                                        <field name="import_invoice" />
+                                        <field name="records_per_page_invoice" />
+                                        <field name="current_import_page_invoice" />
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                                <h2 class="text-primary mb-2">Log History</h2>
+                                <field name="log_historys" readonly="1">
+                                    <tree decoration-success="state=='success'" decoration-danger="state=='error'">
+                                        <field name="field_type" />
+                                        <field name="operation" />
+                                        <field name="error" />
+                                        <field name="datetime" />
+                                        <field name="state" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Main window action for "model" -->
+        <record id="sh_action_import_base_act_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Import Base</field>
+            <field name="res_model">sh.import.base</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Import Base
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

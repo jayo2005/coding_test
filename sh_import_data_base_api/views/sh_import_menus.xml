@@ -1,0 +1,14 @@
+<odoo>
+    <!-- Main menu for "model" -->
+    <record id="import_base" model="ir.ui.menu" >
+        <field name="name">Automated Import</field>
+        <field name="sequence" eval="10" />
+    </record>
+
+    <!-- Parent Menus -->
+    <menuitem name="Import Data" id="menu_import_base" parent="import_base" action="sh_action_import_base_act_window" sequence="1"/>
+    <menuitem name="Logger" action="sh_import_base_action" id="sh_import_base_log_item" parent="import_base" sequence="4"/>
+    <menuitem name="Failed Records" action="sh_import_failed_action" id="sh_import_failed_item" parent="import_base" sequence="4"/>
+
+
+</odoo>

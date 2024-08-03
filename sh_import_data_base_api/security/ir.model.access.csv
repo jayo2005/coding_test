@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sh_import_data_base_api.access_sh_import_base,access_sh_import_base,sh_import_data_base_api.model_sh_import_base,base.group_user,1,1,1,1
+sh_import_data_base_api.access_sh_import_base_log,access_sh_import_base_log,sh_import_data_base_api.model_sh_import_base_log,base.group_user,1,1,1,1
+sh_import_data_base_api.access_sh_import_failed,access_sh_import_failed,sh_import_data_base_api.model_sh_import_failed,base.group_user,1,1,1,1
